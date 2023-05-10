@@ -1,0 +1,40 @@
+version: "3"
+services:
+  wgcf:
+    image: neilpang/wgcf-docker:latest
+    volumes:
+      - ./wgcf:/wgcf
+      - /lib/modules:/lib/modules
+      - ./entry.sh:/entry.sh
+    privileged: true
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: 0
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "1080:1080"
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "https://www.google.com"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+
+  dante:
+    image: vimagick/dante
+    volumes:
+      - ./dante:/etc/dante
+      - ./sockd.conf:/etc/sockd.conf
+    restart: always
+    network_mode: "service:wgcf"
+    depends_on:
+      wgcf: 
+        condition: service_healthy
+
+  test:
+    image: curlimages/curl
+    network_mode: "service:wgcf"
+    depends_on:
+      wgcf: 
+        condition: service_healthy
+    command: curl ipinfo.io
