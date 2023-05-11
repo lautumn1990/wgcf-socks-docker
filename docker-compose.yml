@@ -21,7 +21,7 @@ services:
       retries: 10
 
   dante:
-    image: vimagick/dante
+    image: shturman/dante:1.4.2
     volumes:
       - ./sockd.conf:/etc/sockd.conf
     restart: always

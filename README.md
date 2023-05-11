@@ -39,3 +39,4 @@ echo "your_endpoint" > wgcf/custom-wgcf-endpoint.conf
 - [Neilpang/wgcf-docker](https://github.com/Neilpang/wgcf-docker)
 - [Mon-ius/Docker-Warp-Socks](https://github.com/Mon-ius/Docker-Warp-Socks)
 - [vimagick/dante](https://hub.docker.com/r/vimagick/dante/)
+- [shturman/dante](https://hub.docker.com/r/shturman/dante)
