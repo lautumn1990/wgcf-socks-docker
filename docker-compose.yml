@@ -15,10 +15,10 @@ services:
       - "1080:1080"
     restart: always
     healthcheck:
-      test: ["CMD", "curl", "-f", "https://www.google.com"]
-      interval: 10s
+      test: curl -fs https://www.cloudflare.com/cdn-cgi/trace | grep -q -E 'warp=(on|plus)' && exit 0 || exit 1
+      interval: 5s
       timeout: 2s
-      retries: 5
+      retries: 10
 
   dante:
     image: vimagick/dante
