@@ -24,6 +24,7 @@ services:
     image: shturman/dante:1.4.2
     volumes:
       - ./sockd.conf:/etc/sockd.conf
+      - /etc/localtime:/etc/localtime:ro
     restart: always
     environment:
       - CFGFILE=/etc/sockd.conf
