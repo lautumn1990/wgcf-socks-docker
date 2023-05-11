@@ -31,12 +31,23 @@ runwgcf() {
 
   if [ -e "custom-wgcf-license.conf" ]; then
     _license_key=`cat custom-wgcf-license.conf`
-    sed -i "s/license_key.*$/license_key = '${_license_key}'/" wgcf-account.toml
-    wgcf update
+    _old_license_key=`awk -F "['']" '/license_key/{print $2}' wgcf-account.toml`
+    if [ "$_license_key" != "$_old_license_key" ]; then
+      echo 'updating license key'
+      sed -i "s/license_key.*$/license_key = '${_license_key}'/" wgcf-account.toml
+      wgcf update
+    fi
   fi
 
   if [ ! -e "wgcf-profile.conf" ]; then
     wgcf generate
+  else
+    _account_file_private_key=`awk -F "['']" '/private_key/{print $2}' wgcf-account.toml`
+    _profile_file_private_key=`awk -F " = " '/PrivateKey/{print $2}' wgcf-profile.conf`
+    if [ "$_account_file_private_key" != "$_profile_file_private_key" ]; then
+      echo 're generate profile'
+      wgcf generate
+    fi
   fi
 
   if [ -e "custom-wgcf-endpoint.conf" ]; then
