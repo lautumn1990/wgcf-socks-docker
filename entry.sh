@@ -84,6 +84,11 @@ runwgcf() {
   fi
 
   echo 
+  echo 
+  echo "wgcf status"
+  wgcf status
+
+  echo 
   echo "OK, wgcf is up."
   
 
