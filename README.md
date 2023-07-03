@@ -37,6 +37,7 @@ echo "your_endpoint" > wgcf/custom-wgcf-endpoint.conf
 ## reference
 
 - [Neilpang/wgcf-docker](https://github.com/Neilpang/wgcf-docker)
+- [XTLS/Xray-core](https://github.com/XTLS/Xray-core)
 - [Mon-ius/Docker-Warp-Socks](https://github.com/Mon-ius/Docker-Warp-Socks)
 - [vimagick/dante](https://hub.docker.com/r/vimagick/dante/)
 - [shturman/dante](https://hub.docker.com/r/shturman/dante)

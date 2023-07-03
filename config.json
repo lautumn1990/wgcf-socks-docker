@@ -1,0 +1,45 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+            "tag": "socks-in",
+            "protocol": "socks",
+            "port": 1080,
+            "settings": {
+                "udp": true
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "tag": "wgcf",
+            "protocol": "freedom",
+            "settings": {},
+            "streamSettings": {
+                "sockopt": {
+                    "tcpFastOpen": true,
+                    "interface": "wgcf"
+                }
+            }
+        }
+    ],
+    "dns": {
+        "servers": [
+            "1.1.1.1",
+            "8.8.8.8",
+            "8.8.4.4"
+        ]
+    },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "outboundTag": "wgcf",
+                "network": "tcp,udp"
+            }
+        ]
+    }
+}

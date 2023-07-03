@@ -21,14 +21,11 @@ services:
       timeout: 2s
       retries: 10
 
-  dante:
-    image: shturman/dante:1.4.2
+  xray:
+    image: teddysun/xray:latest
+    privileged: true
     volumes:
-      - ./sockd.conf:/etc/sockd.conf
-      - /etc/localtime:/etc/localtime:ro
-    restart: always
-    environment:
-      - CFGFILE=/etc/sockd.conf
+      - ./config.json:/etc/xray/config.json
     network_mode: "service:wgcf"
     depends_on:
       wgcf: 
