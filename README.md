@@ -9,6 +9,9 @@ a docker compose file for wgcf-socks
 git clone https://github.com/lautumn1990/wgcf-socks-docker
 cd wgcf-socks-docker
 
+# If you want to use Xray to replace Dante to expose the SOCKS5 port.
+# git checkout xray
+
 docker-compose up -d
 
 # check and test
