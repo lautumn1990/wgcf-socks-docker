@@ -9,6 +9,9 @@ a docker compose file for wgcf-socks
 git clone https://github.com/lautumn1990/wgcf-socks-docker
 cd wgcf-socks-docker
 
+# if you want to use xray to expose socks5 to public
+git checkout xray
+
 docker-compose up -d
 
 # check and test
